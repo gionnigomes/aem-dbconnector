@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/dbconnector",
+        "create path (nt:unstructured) /content/dam/dbconnector/jcr:content",
+        "set properties on /content/dam/dbconnector/jcr:content\n  set cq:conf{String} to /conf/dbconnector\n  set jcr:title{String} to \"Database Connector\"\nend"
+    ]
+}
