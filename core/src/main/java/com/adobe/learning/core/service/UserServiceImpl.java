@@ -1,5 +1,6 @@
 package com.adobe.learning.core.service;
 
+import com.adobe.learning.core.dao.UserDao;
 import com.adobe.learning.core.models.UserModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,11 +23,8 @@ public class UserServiceImpl implements UserService {
     @Reference
     private DatabaseService databaseService;
 
- /*   @Override
-    public List<UserModel> getAllUser() {
-        UserModel user = new UserModel();
-        return user.getUsers();
-    }*/
+    @Reference
+    private UserDao userDao;
 
     @Override
     public List<UserModel> getUserDB() {
@@ -42,7 +40,6 @@ public class UserServiceImpl implements UserService {
                         user.setNome(rs.getString(1));
                         user.setIdade(rs.getInt(2));
                         userList.add(user);
-                        //resp.getWriter().write("name=" + rs.getString(1) + " age=" + rs.getInt(2) + "\n");
                     }
                     return userList;
                 }
@@ -83,7 +80,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(UserModel user) {
+    }
 
+    @Override
+    public List<UserModel> getUsers(){
+        return userDao.getUsers();
     }
 
 

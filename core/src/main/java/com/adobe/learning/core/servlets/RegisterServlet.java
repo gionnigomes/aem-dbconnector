@@ -1,6 +1,5 @@
 package com.adobe.learning.core.servlets;
 
-
 import com.adobe.learning.core.models.UserModel;
 import com.adobe.learning.core.service.DatabaseService;
 import com.adobe.learning.core.service.UserService;
@@ -14,9 +13,6 @@ import org.osgi.service.component.annotations.Reference;
 import javax.servlet.Servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import static org.apache.sling.api.servlets.ServletResolverConstants.*;
@@ -39,12 +35,12 @@ public class RegisterServlet extends SlingAllMethodsServlet {
 
     @Override
     protected void doPost(final SlingHttpServletRequest req, final SlingHttpServletResponse resp) throws IOException {
-       // resp.getWriter().write(userService.getUsers().toString());
+
     }
 
     @Override
     protected void doGet(final SlingHttpServletRequest req, final SlingHttpServletResponse resp) throws IOException {
-        List<UserModel> list = userService.getUserDB();
+        List<UserModel> list = userService.getUsers();
         String json = userService.strToJson(list);
         resp.getWriter().write(json);
     }
