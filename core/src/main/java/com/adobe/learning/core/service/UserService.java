@@ -1,13 +1,14 @@
 package com.adobe.learning.core.service;
 
-import com.adobe.learning.core.models.User;
+import com.adobe.learning.core.models.UserModel;
 import org.apache.sling.api.SlingHttpServletRequest;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAllUser();
-    List<User> verifyUserNull(SlingHttpServletRequest req);
-    String strToJson(String str);
+    List<UserModel> getUserDB();
+    List<UserModel> verifyUserNull(SlingHttpServletRequest req);
+    String strToJson(Object obj);
+    void addUser(UserModel user);
 }

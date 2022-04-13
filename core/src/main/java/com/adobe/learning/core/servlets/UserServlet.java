@@ -17,19 +17,13 @@ package com.adobe.learning.core.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.Key;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
 //import com.adobe.cq.wcm.core.components.models.List;
-import com.adobe.granite.oauth.jwt.JwsValidator;
-import com.adobe.learning.core.models.User;
-import com.adobe.learning.core.service.UserService;
+import com.adobe.learning.core.models.UserModel;
 import com.adobe.learning.core.service.UserServiceImpl;
 import com.drew.lang.annotations.NotNull;
 import com.google.gson.Gson;
@@ -64,17 +58,17 @@ public class UserServlet extends SlingAllMethodsServlet {
 
     String json;
     @Reference
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @Override
     protected void doGet(final SlingHttpServletRequest req,
                          final @NotNull SlingHttpServletResponse resp) throws ServletException, IOException {
 
-        List<User> users = userService.getAllUser();
-        List<User> userTemp = userService.verifyUserNull(req);
+       /* List<UserModel> users = userService.getAllUser();
+        List<UserModel> userTemp = userService.verifyUserNull(req);
         String json = userService.strToJson(userTemp.toString());
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);
+        resp.getWriter().write(json);*/
     }
 
     @Override
@@ -83,12 +77,12 @@ public class UserServlet extends SlingAllMethodsServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        User userAdd = new User();
+        UserModel userAdd = new UserModel();
 
         String userPostString = IOUtils.toString(request.getReader());
         Gson gson = new Gson();
-        User objUserConverter = new User();
-        objUserConverter = gson.fromJson(userPostString, User.class);
+        UserModel objUserConverter = new UserModel();
+        objUserConverter = gson.fromJson(userPostString, UserModel.class);
         userAdd.addUser(objUserConverter);
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
